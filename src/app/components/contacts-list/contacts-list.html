@@ -1,0 +1,43 @@
+<div class="container">
+
+  <h1 class="title text-center">Contacts</h1>
+
+  <h3 class="title text-center">Favorite Contacts</h3>
+  <div *ngFor="let favorite of favorites" class="contact-section">
+    <div class="card" (click)="showContactDetail(favorite)">
+      <div class="row ">
+        <div class="col-md-4">
+          <img src={{favorite.smallImageURL}} alt="Profile Photo" class="contact-photo" onerror="this.src='../../assets/user-placeholder-small.png';"/>
+        </div>
+        <div class="col-md-8 px-3">
+          <div class="card-block px-3">
+            <h4 class="card-title contact-name">
+              <img src="../../assets/star-favorite-small.png" alt="Favorite Gold Star Icon" />
+              {{favorite.name}}
+            </h4>
+            <p class="card-text">{{favorite.companyName}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="title">Other Contacts</h3>
+  <div *ngFor="let contact of contacts" class="contact-section">
+    <div class="card" (click)="showContactDetail(contact)">
+      <div class="row ">
+        <div class="col-md-4">
+          <img src={{contact.smallImageURL}} alt="Profile Photo" class="contact-photo" onerror="this.src='../../assets/user-placeholder-small.png';" />
+        </div>
+        <div class="col-md-8 px-3">
+          <div class="card-block px-3">
+            <h4 class="card-title contact-name">{{contact.name}}</h4>
+            <p class="card-text">{{contact.companyName}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <contact-detail #modalContactDetail (updateFavorite)="updateFavorite($event)"></contact-detail>
+</div>
