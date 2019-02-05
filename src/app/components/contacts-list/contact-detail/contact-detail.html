@@ -1,0 +1,65 @@
+<div bsModal #modalContactDetail="bs-modal" class="modal fade contact-detail" tabindex="-1" role="basic" aria-hidden="true" [config]="{backdrop: 'static', keyboard: false}">
+  <div class="modal-dialog modal-lg">
+    <div *ngIf="contact" class="modal-content">
+
+      <div class="modal-header">
+        <div (click)="hideModal()" class="headback">
+          <h4 class="modal-title pull-left">
+            <i class="fa fa-angle-left"></i>
+            Contacts
+          </h4>
+        </div>
+        <div class="pull-right">
+          <img *ngIf="favorite.state" src="../../../assets/star-favorite-small.png" alt="Favorite Gold Star Icon" (click)="changeFavorite()" />
+          <img *ngIf="!favorite.state" src="../../../assets/star-not-favorite-small.png" alt="Not Favorite Gold Star Icon" (click)="changeFavorite()" />
+        </div>
+      </div>
+
+      <div class="modal-body text-center">
+        <div class="card contact-card">
+          <img class="card-img-top" src={{contact.largeImageURL}} alt="Profile Photo" onerror="this.src='../../../assets/user-placeholder-medium.png';">
+          <div class="card-body">
+            <h5 class="card-title">{{contact.name}}</h5>
+            <p *ngIf="contact.companyName" class="card-text">{{contact.companyName}}</p>
+            <hr>
+            <div *ngIf="contact.phone" name="phones" class="align-left">
+              <div *ngIf="contact.phone.mobile" name="work">
+                <p class="title uppercase">Phone:</p>
+                <p class="card-text">{{contact.phone.work}}</p>
+                <p class="phone-type">Work</p>
+                <hr>
+              </div>
+              <div *ngIf="contact.phone.mobile" name="home">
+                <p class="title uppercase">Phone:</p>
+                <p class="card-text">{{contact.phone.home}}</p>
+                <p class="phone-type">Home</p>
+                <hr>
+              </div>
+              <div *ngIf="contact.phone.mobile" name="mobile">
+                <p class="title uppercase">Phone:</p>
+                <p class="card-text">{{contact.phone.mobile}}</p>
+                <p class="phone-type">Mobile</p>
+                <hr>
+              </div>
+            </div>
+            <hr *ngIf="!contact.phone">
+            <div *ngIf="contact.address" class="align-left">
+              <p class="title uppercase">Address:</p>
+              <p class="card-text">{{address}}</p>
+            </div>
+            <hr>
+            <div class="align-left">
+              <p class="title uppercase">Email:</p>
+              <p *ngIf="contact.emailAddress" class="card-text">{{contact.emailAddress}}</p>
+            </div>
+            <hr>
+            <div class="align-left">
+              <p class="title uppercase">Birthdate:</p>
+              <p *ngIf="contact.birthdate" class="card-text">{{contact.birthdate}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
